@@ -1,0 +1,579 @@
+/* Clean Minimalist Wix & Uber Layout Design Tokens */
+:root {
+    --textcolor: #111625;
+    --textcoloropp: #00ffcc;
+    --bgcolor: #f7f9fc;
+    --bgcoloropp: #ffffff;
+    --card-surface: #ffffff;
+    --border-token: #e2e8f0;
+    --hovercolor: #00ffcc;
+    --pill-bg: #111625;
+    --pill-text: #ffffff;
+    --soft-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+    --textcolor: #f1f5f9;
+    --textcoloropp: #00ffcc;
+    --bgcolor: #0a0f1d;
+    --bgcoloropp: #111827;
+    --card-surface: #1f2937;
+    --border-token: #374151;
+    --pill-bg: #00ffcc;
+    --pill-text: #0a0f1d;
+    --soft-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bgcolor);
+    color: var(--textcolor);
+    height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Base Master Page Grid Structuring Layout */
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 420px 1fr;
+    grid-template-rows: 80px 1fr auto;
+    grid-template-areas: 
+        "nav nav"
+        "aside main-content"
+        "footer footer";
+}
+
+/* Main inner grid bypass layout redirection mapping */
+.main {
+    display: grid;
+    grid-area: main-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1.2fr;
+    grid-template-areas: 
+        "section"
+        "section2";
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--bgcolor);
+}
+
+/* --- Clean Modern Navbar Framework --- */
+.navbar {
+    background-color: var(--bgcoloropp);
+    border-bottom: 1px solid var(--border-token);
+    padding: 0 40px;
+    z-index: 100;
+}
+
+.navbar ul {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    list-style: none;
+    gap: 15px;
+}
+
+/* Infinity Overlay Vector Layout Wrapper */
+.logo-wrapper {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* The transparent infinite tracing animation overlay */
+.infinity-loop-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.infinity-loop-overlay path {
+    fill: transparent;
+    stroke: var(--hovercolor);
+    stroke-width: 35;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    animation: loopTraceStraight 3s linear infinite;
+}
+
+@keyframes loopTraceStraight {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.brand-heading {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-left: 10px;
+    color: var(--textcolor);
+}
+
+.navbar ul li:nth-child(2) {
+    margin-right: auto;
+}
+
+.nav-drawer-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--textcolor);
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-action-link:hover {
+    color: #111625;
+    background-color: var(--hovercolor);
+}
+
+/* Brightness Theme Toggle Configuration Setup */
+.control-theme-item {
+    margin-left: 15px;
+}
+
+.theme-toggle-trigger {
+    background: transparent;
+    border: 1px solid var(--border-token);
+    color: var(--textcolor);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease;
+}
+
+.theme-toggle-trigger:hover {
+    border-color: var(--hovercolor);
+    color: var(--hovercolor);
+}
+
+[data-theme="dark"] .sun-svg-icon { display: block; }
+[data-theme="dark"] .moon-svg-icon { display: none; }
+[data-theme="light"] .sun-svg-icon { display: none; }
+[data-theme="light"] .moon-svg-icon { display: block; }
+
+.mobile-menu-item { display: none; }
+
+.hamburger-trigger-element {
+    background: transparent;
+    border: none;
+    color: var(--textcolor);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* --- Aside Section: Clean Uber/Wix Suggestions Stack --- */
+.wix-aside-container {
+    grid-area: aside;
+    background-color: var(--bgcoloropp);
+    border-right: 1px solid var(--border-token);
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.aside-header {
+    margin-bottom: 30px;
+}
+
+.wix-aside-container h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.aside-header p {
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+.uber-suggestions-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.suggestion-card {
+    background-color: var(--card-surface);
+    border: 1px solid var(--border-token);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    box-shadow: var(--soft-shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.suggestion-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--hovercolor);
+}
+
+.suggestion-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.suggestion-card p {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    line-height: 1.5;
+}
+
+.action-pill-button {
+    background-color: var(--pill-bg);
+    color: var(--pill-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity 0.2s ease;
+}
+
+.action-pill-button:hover {
+    opacity: 0.9;
+}
+
+/* Embed Components internal to suggestion modules */
+.terminal-micro-view {
+    margin-top: 12px;
+    background-color: #0b111e;
+    color: #3bf7b1;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+}
+
+.cinema-embedded-frame {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-ticker-view {
+    background: rgba(0,0,0,0.03);
+    border: 1px solid var(--border-token);
+    height: 75px;
+    border-radius: 8px;
+    padding: 8px;
+    overflow-y: auto;
+    font-size: 0.75rem;
+}
+
+[data-theme="dark"] .chat-ticker-view {
+    background: rgba(0,0,0,0.2);
+}
+
+.chat-msg-row {
+    margin-bottom: 4px;
+}
+
+.chat-input-pill {
+    display: flex;
+    border: 1px solid var(--border-token);
+    border-radius: 30px;
+    overflow: hidden;
+    background: var(--bgcolor);
+}
+
+.chat-input-pill input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    color: var(--textcolor);
+    outline: none;
+}
+
+.chat-submit-btn {
+    background: var(--hovercolor);
+    color: #111625;
+    border: none;
+    padding: 0 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.minimal-search-field {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--bgcolor);
+    border: 1px solid var(--border-token);
+    color: var(--textcolor);
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    outline: none;
+}
+
+.hero-matches-container {
+    list-style: none;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.hero-matches-container li {
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--border-token);
+}
+
+/* --- Section Panels: Spacious Clean Layouts --- */
+.wix-panel-main {
+    grid-area: section;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-token);
+}
+
+.hero-text-block {
+    max-width: 600px;
+}
+
+.subtext-badge {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--hovercolor);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.wix-panel-main h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.wix-panel-main p {
+    font-size: 1.05rem;
+    opacity: 0.7;
+    line-height: 1.6;
+}
+
+/* Gallery Block Matrix Area Section */
+.wix-gallery-main {
+    grid-area: section2;
+    padding: 60px;
+}
+
+.gallery-action-titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.gallery-action-titlebar h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.gallery-action-titlebar p {
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+.wix-primary-upload-pill {
+    background-color: var(--pill-bg);
+    color: var(--pill-text);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.wix-primary-upload-pill:hover {
+    opacity: 0.9;
+}
+
+/* Auto-Responsive Fluid Presentation Grid Framework layout */
+.responsive-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.uploaded-art-frame {
+    background-color: var(--card-surface);
+    border: 1px solid var(--border-token);
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: var(--soft-shadow);
+    display: flex;
+}
+
+.uploaded-art-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fallback-empty-card {
+    grid-column: 1 / -1;
+    border: 2px dashed var(--border-token);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.placeholder-icon-cross {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+/* --- Footer Segment Configuration --- */
+footer {
+    background-color: var(--bgcoloropp);
+    border-top: 1px solid var(--border-token);
+    padding: 30px 40px;
+}
+
+.footer-inner-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.brand-manifesto-column p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    max-width: 500px;
+    line-height: 1.5;
+}
+
+.wix-tiktok-pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    background-color: var(--pill-bg);
+    color: var(--pill-text);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* --- Media Queries Responsive Control Brakepoints --- */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 80px auto 1fr auto;
+        grid-template-areas: 
+            "nav"
+            "aside"
+            "main-content"
+            "footer";
+    }
+    .wix-aside-container {
+        border-right: none;
+        border-bottom: 1px solid var(--border-token);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Responsive Rule: Only display first, second child of list, and the mobile hamburger trigger */
+    .nav-drawer-links {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--bgcoloropp);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid var(--border-token);
+        display: none; 
+    }
+    
+    .nav-drawer-links.drawer-active {
+        display: flex;
+    }
+    
+    .nav-drawer-links li {
+        width: 100%;
+    }
+    
+    .nav-action-link {
+        width: 100%;
+        padding: 16px 40px;
+        border-radius: 0;
+        justify-content: flex-start;
+        border-bottom: 1px solid var(--border-token);
+    }
+    
+    .mobile-menu-item {
+        display: block;
+        margin-left: auto;
+    }
+    
+    .control-theme-item {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+    
+    .wix-panel-main, .wix-gallery-main {
+        padding: 40px 20px;
+    }
+}
